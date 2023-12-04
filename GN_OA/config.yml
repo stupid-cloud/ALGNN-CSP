@@ -1,0 +1,57 @@
+# The chemical formula of the compound, element symbol + count, i.e., Ca4 S4, Cs1 Pb1 I3
+global:
+  composition: Mg4O4
+
+
+
+
+
+
+# Ca4O4
+  # The GN model file path, it is better to use absolute path.
+  gn_model: /home/gengzi/python/my_work/crystal_prediction/crystal/saved_model/my_model.pth
+  # gn_model_path: F:\GN-BOSS\NN_model\model\val_mae_00486_0.031741.hdf5
+  # Output path, use to save the results.
+  # Load model and predict using GPU
+  rand_seed: 100
+# [LATTICE]
+# 1) if space_group<=1 : without symmetry
+# 2) else : with symmetry
+#    i) [A, B] -> A<=space_group<=B;
+#    ii) (A, B, C ...) -> space_group=A,B,C...;
+#    iii) A -> space_group=A
+lattice:
+  space_group: [225, 225]
+  # Lattice a,b,c (unit: Angstrom):
+  #    1) [A, B] -> A<=Lattice<=B;
+  #    2) (A, B, C ...) -> Lattice=A,B,C...;
+  #    3) A -> Lattice=A
+  lattice_a: [2, 30]
+  lattice_b: [2, 30]
+  lattice_c: [2, 30]
+  # Lattice alpha,beta,gamma (unit: degree):
+  #    1) [A, B] -> A<=Lattice<=B;
+  #    2) (A, B, C ...) -> Lattice=A,B,C...;
+  #    3) A -> Lattice=A
+  lattice_alpha: [20, 160]
+  lattice_beta: [20, 160]
+  lattice_gamma: [20, 160]
+
+# [PROGRAM]
+program:
+  # Search algorithm:
+  # hyperopt: 1) 'rs' (Random Search); 2) 'bo' (Bayesian Optimization)
+  # sko: 1) 'ga' (Genetic Algorithm); 2) 'pso' (Particle Swarm Optimization)
+  # None: enumerate
+  algorithm: [None, pso]
+  # The count of initial random points, only valid when the algorithm is tpe
+
+  # The count of initial random points, only valid when the algorithm is ga and pso
+  oa_params: {w: 0.5}
+  # The count of initial random points, only valid when the algorithm is tpe
+  n_init: [100, 100]
+  # The maximum steps of program runs
+  max_step: [200, 1500]
+  # Specify the random seed, -1 is None
+  sys_weight: [0, 0]
+  

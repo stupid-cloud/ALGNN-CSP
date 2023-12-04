@@ -1,0 +1,26 @@
+CGCNN:
+    pre_fc_num: 2
+    pre_out_channel: 40
+    conv_num: 2
+    post_fc_num: 2
+    post_out_channel: 20
+    pool: "global_mean_pool"
+    # pool: "global_first_pool"
+    dropout_rate: 0.0
+    batch_norm: True
+    aggr: "mean"
+    act: "relu"
+                          
+ALGNN:
+    pre_fc_num: 2
+    pre_out_channel: 100
+    conv_num: 2
+    post_fc_num: 2
+    post_out_channel: 50
+    pool: "global_mean_pool"
+    # pool: "global_first_pool"
+    dropout_rate: 0
+    batch_norm: True
+    aggr: "mean"
+    act: "relu"
+    epsilon: 0.00001

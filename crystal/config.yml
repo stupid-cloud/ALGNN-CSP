@@ -1,0 +1,51 @@
+Global:
+
+    run_mode: "Training"  
+    # 随机数种子
+    seed: 100 # transfer 100 ,other 5
+
+#{Training, Predict, Repeat, CV, Hyperparameter, Ensemble, Analysis}
+Training:  
+    model_name: "ALGNN"   
+    model_path: "./crystal/saved_model/my_model.pth"
+    transfer: True
+    #Ratios for train/val/test split out of a total of 1  
+    train_ratio: 0.8
+    val_ratio: 0.1
+    # 训练参数选择
+    batch_size: 4096
+    # Loss functions (from pytorch) examples: l1_loss, mse_loss, binary_cross_entropy
+    loss: "l1_loss" 
+    epochs: 100
+    lr: 0.001
+    optimizer: "Adam"
+    optimizer_args: {}
+    scheduler: "ReduceLROnPlateau"
+    scheduler_args: {"mode":"min", "factor":0.8, "patience":10, "min_lr":0.00001, "threshold":0.0002}
+
+Predicting:   
+    model_path: "./crystal/saved_model/my_model.pth"
+    # Loss functions (from pytorch) examples: l1_loss, mse_loss, binary_cross_entropy
+    save_path: './crystal/pred_result'
+
+
+Processing:
+    #graph specific settings 
+    num_graph: "all"  # 需要加载的样本数量
+    graph_max_radius: 5  # A
+    graph_max_neighbors: 12 
+    edge_features: True  # edge属性
+    graph_edge_length: 50   # edge属性长度
+    crystal_path: "/home/gengzi/python/GNN/data/experiment/Ef"
+    # crystal_path: "/home/gengzi/python/GNN/data/OQMD/all"
+    # crystal_path: "/home/gengzi/python/GNN/data/OQMD/Ac/all"
+    data_path: "/home/gengzi/python/my_work/crystal_prediction/crystal/data"
+    targets_file_name: 'exp_all.csv'
+    use_lb: True
+    lb_path: "/home/gengzi/python/my_work/crystal_prediction/crystal/data"
+
+
+
+
+
+    
